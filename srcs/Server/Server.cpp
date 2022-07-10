@@ -37,6 +37,7 @@ Server::Server(int port, std::string pass)
 	_operators["John"] = "johnmdp"; //kill message
 	_operators["Smith"] = "smithmdp"; //restart message
 	_operators["1"] = "1"; //restart message
+	
 }
 
 Server::~Server( void )

@@ -30,10 +30,6 @@ public:
 	typedef	std::vector<Channel*>						channelVector;
 	typedef std::map <std::string, std::string>			operMap;
 
-	static userVector		_save_user_tab;
-	static channelVector	_save_channel_tab;
-	static size_t			_save_user_size;
-	static size_t			_save_channel_size;
 
 private:
 	int						_main_socket;
@@ -96,9 +92,18 @@ public:
 	const char&		findUnknownChannelMode(const std::string& mode) const;
 
 	static void		handle_sigint_server(int sig);
+
+	
+	pollfdVector	getSocketVector(void) const;
+	userVector		getUserVector(void) const;
+	channelVector	getChannelVector(void) const;
+	commandMap		getCommandsVector(void) const;
+	operMap			getOperVector(void) const;
 };
 
 bool	operator==(const t_pollfd &pollfd1, const t_pollfd &pollfd2);
 
+typedef std::map <std::string, void*>	save;
+save									lists;
 
 #endif

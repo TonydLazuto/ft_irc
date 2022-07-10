@@ -61,3 +61,24 @@ std::string Server::getServerInfos(void) const
 {
 	return "Server : " + getServerName() + " :" + getVersion() + ", created on " + getDate();
 }
+
+Server::pollfdVector	Server::getSocketVector(void) const
+{
+	return _socket_tab;
+}
+Server::userVector		Server::getUserVector(void) const
+{
+	return _user_tab;
+}
+Server::channelVector	Server::getChannelVector(void) const
+{
+	return _channel_tab;
+}
+Server::commandMap		Server::getCommandsVector(void) const
+{
+	return _commands;
+}
+Server::operMap			Server::getOperVector(void) const
+{
+	return _operators;
+}

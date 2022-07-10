@@ -208,10 +208,9 @@ void	test_reply(int fd, Server & server)
 	exit(1);
 }
 
-Server::userVector		Server::_save_user_tab;
-Server::channelVector	Server::_save_channel_tab;
-size_t					Server::_save_user_size = 0;
-size_t					Server::_save_channel_size = 0;
+Server::userVector		save_user_tab;
+Server::channelVector	save_channel_tab;
+Server::pollfdVector	save_pollfd;
 
 void    launch_serv(std::string port, std::string password)
 {
@@ -223,6 +222,12 @@ void    launch_serv(std::string port, std::string password)
 	int					fd;
 	
 	// test_reply(1, server);
+	// lists["sockets"] = server.getSocketVector();
+	// lists["commands"] = server.getUserVector();
+	// lists["users"] = server.getChannelVector();
+	// lists["channels"] = server.getCommandsVector();
+	// lists["operators"] = server.getOperVector();
+
 	signal(SIGINT, Server::handle_sigint_server);
 	while(1)
 	{

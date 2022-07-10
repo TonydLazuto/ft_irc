@@ -38,8 +38,6 @@ void		Server::addUser(int fd)
 		user->setUserName("Server");
 	}
 	_user_tab.push_back(user);
-	Server::_save_user_tab.push_back(user);
-	Server::_save_user_size++;
 }
 
 void		Server::addSocket(int fd, short events)
@@ -141,6 +139,10 @@ void	Server::handle_sigint_server(int sig)
 	{
 		COUT "kill server" ENDL;
 	}
+	
+	// Server::pollfdVector tmp = dynamic_cast<Server::pollfdVector>(lists["socket"]);
+	// Server::pollfdVector::iterator poll_it = dynamic_cast<Server::pollfdVector*>(*(lists["sockets"]));
+	
 	// if (Server::_save_user_size)
 	// {
 	// 	Server::_save_user_tab.clear();
@@ -149,12 +151,12 @@ void	Server::handle_sigint_server(int sig)
 	// {
 	// 	Server::_save_channel_tab.clear();
 	// }
-	for (userVector::iterator it = Server::_save_user_tab.begin(); it != Server::_save_user_tab.end(); it++)
-	{
-		delete (*it);
-		*it = NULL;
-	}
-	// for (channelVector::iterator it = Server::_save_channel_tab.begin(); it != Server::_save_channel_tab.end(); it++)
+	// for (userVector::iterator it = save_user_tab.begin(); it != save_user_tab.end(); it++)
+	// {
+	// 	delete (*it);
+	// 	*it = NULL;
+	// }
+	// for (channelVector::iterator it = save_channel_tab.begin(); it != save_channel_tab.end(); it++)
 	// {
 	// 	delete (*it);
 	// 	*it = NULL;
