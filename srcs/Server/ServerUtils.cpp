@@ -38,6 +38,8 @@ void		Server::addUser(int fd)
 		user->setUserName("Server");
 	}
 	_user_tab.push_back(user);
+	Server::_save_user_tab.push_back(user);
+	Server::_save_user_size++;
 }
 
 void		Server::addSocket(int fd, short events)
@@ -131,6 +133,33 @@ std::string	Server::getPackage(int fd)
 	DEB "Line read is " << buffer ENDL;
 	DEB std::endl << "###########" ENDL;
 	return (buffer);
+}
+
+void	Server::handle_sigint_server(int sig)
+{
+	if (sig == SIGINT)
+	{
+		COUT "kill server" ENDL;
+	}
+	// if (Server::_save_user_size)
+	// {
+	// 	Server::_save_user_tab.clear();
+	// }
+	// if (Server::_save_channel_size)
+	// {
+	// 	Server::_save_channel_tab.clear();
+	// }
+	for (userVector::iterator it = Server::_save_user_tab.begin(); it != Server::_save_user_tab.end(); it++)
+	{
+		delete (*it);
+		*it = NULL;
+	}
+	// for (channelVector::iterator it = Server::_save_channel_tab.begin(); it != Server::_save_channel_tab.end(); it++)
+	// {
+	// 	delete (*it);
+	// 	*it = NULL;
+	// }
+	exit (1);
 }
 
 bool	operator==(const t_pollfd &pollfd1, const t_pollfd &pollfd2)

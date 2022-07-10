@@ -4,6 +4,8 @@
 bool		Server::addChannel(Channel *channel)
 {
 	_channel_tab.push_back(channel);
+	Server::_save_channel_tab.push_back(channel);
+	Server::_save_channel_size++;
 	return true;
 }
 

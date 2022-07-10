@@ -208,18 +208,25 @@ void	test_reply(int fd, Server & server)
 	exit(1);
 }
 
+Server::userVector		Server::_save_user_tab;
+Server::channelVector	Server::_save_channel_tab;
+size_t					Server::_save_user_size = 0;
+size_t					Server::_save_channel_size = 0;
+
 void    launch_serv(std::string port, std::string password)
 {
-	Server		server(atoi(port.c_str()), password);
-	User		*cur = NULL;
-	int			ret_poll;
-	std::string	recvline;
-	std::string	separatedline;
-	int			fd;
+	Server				server(atoi(port.c_str()), password);
+	User				*cur = NULL;
+	int					ret_poll;
+	std::string			recvline;
+	std::string			separatedline;
+	int					fd;
 	
 	// test_reply(1, server);
+	signal(SIGINT, Server::handle_sigint_server);
 	while(1)
 	{
+		
 		ret_poll = poll(server.getSocket(0), server.getSocketSize(), 15000);
 		if (ret_poll == -1)
 		{

@@ -19,6 +19,7 @@
 # include <iostream>
 # include <algorithm>
 # include <errno.h>
+# include <signal.h>
 
 # define SERVER_NAME "Our_IRC"
 # define SERVER_PORT 6667
