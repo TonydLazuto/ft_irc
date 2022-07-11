@@ -54,6 +54,7 @@ void		Server::deleteUserSocket(nfds_t i)
 {
 	close(_socket_tab[i].fd);
 	_socket_tab.erase(_socket_tab.begin() + i);
+	// delete (*(_user_tab.begin() + i));
 	_user_tab.erase(_user_tab.begin() + i);
 }
 
@@ -132,6 +133,26 @@ std::string	Server::getPackage(int fd)
 	DEB std::endl << "###########" ENDL;
 	return (buffer);
 }
+
+void		Server::clearAll(void)
+{
+	for (userVector::iterator it = _user_tab.begin() + 1; it != _user_tab.end(); it++)
+	{
+		deleteUserQuittingChannel(*it);
+		close(findMatchingSocket((*it)->getNick()).fd);
+	}
+	if (!_user_tab.empty())
+	{
+		deleteUserQuittingChannel(*_user_tab.begin());
+		close(findMatchingSocket((*_user_tab.begin())->getNick()).fd);
+	}	
+	_socket_tab.clear();
+	_user_tab.clear();
+	_channel_tab.clear();
+	_commands.clear();
+	_operators.clear();
+}
+
 
 bool	operator==(const t_pollfd &pollfd1, const t_pollfd &pollfd2)
 {

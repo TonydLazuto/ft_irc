@@ -87,9 +87,11 @@ public:
 	int				check_first_char_channel(std::string &name) const;
 	void			listChannel(int fd) const;
 	const char&		findUnknownChannelMode(const std::string& mode) const;
+
+	void			clearAll(void);
+	
 };
 
 bool	operator==(const t_pollfd &pollfd1, const t_pollfd &pollfd2);
-
 
 #endif

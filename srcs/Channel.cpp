@@ -18,6 +18,10 @@ Channel::Channel(std::string name, std::string key) :
 Channel::~Channel()
 {
 	DEB "Destruct Channel." ENDL;
+	_whitelist.clear();
+	_banlist.clear();
+	_exceptlist.clear();
+	_invitelist.clear();
 }
 
 const std::string&		Channel::getName(void) const

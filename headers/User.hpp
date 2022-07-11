@@ -67,6 +67,8 @@ public:
 	void	removeModeChannel(Channel *chan, const char &mode);
 	bool	isModeInChannel(Channel *chan, const char &mode);
 
+	void	clearChanAndMode(void);
+
 	bool	operator==(User* user) const;
 
 	std::string	getChannelList() const;

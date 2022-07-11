@@ -65,5 +65,6 @@ void	Server::initCommands(void)
 	_commands["kill"] = kill;
 	_commands["KICK"] = kick;
 	_commands["INVITE"] = invite;
+	_commands["die"] = die;
 }
 

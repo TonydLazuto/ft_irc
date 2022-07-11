@@ -41,6 +41,7 @@ SRC			=	srcs/main.cpp \
 				srcs/Commands/kick.cpp \
 				srcs/Commands/topic.cpp \
 				srcs/Commands/list.cpp \
+				srcs/Commands/die.cpp \
 				srcs/Channel.cpp
 
 DEP			=	$(SRC:.cpp=.d)

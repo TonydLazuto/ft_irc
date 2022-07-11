@@ -33,5 +33,6 @@ void	list(const std::string &line, int fd, Server& server);
 void	kill(const std::string &line, int fd, Server& server);
 void	kick(const std::string &line, int fd, Server& server);
 void	invite(const std::string &line, int fd, Server& server);
+void	die(const std::string &line, int fd, Server& server);
 
 #endif

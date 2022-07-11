@@ -21,6 +21,7 @@ User::User( int socket, std::string nick, std::string user_name,
 User::~User( void )
 {
 	COUT "Destruct User." ENDL;
+	clearChanAndMode();
 }
 
 bool    User::isOperator(void) const
@@ -216,3 +217,7 @@ bool	User::isModeInChannel(Channel *chan, const char &mode)
 	return false;
 }
 
+void	User::clearChanAndMode(void)
+{
+	_chan_and_modes.clear();
+}
