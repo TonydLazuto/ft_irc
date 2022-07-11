@@ -22,6 +22,8 @@ Channel::~Channel()
 	_banlist.clear();
 	_exceptlist.clear();
 	_invitelist.clear();
+
+	_clients.clear();
 }
 
 const std::string&		Channel::getName(void) const

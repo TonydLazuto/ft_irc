@@ -14,6 +14,7 @@ void	die(const std::string &line, int fd, Server& server)
 		server.send_reply(fd, 481, ES, ES, ES, ES); //ERR_NOPRIVILEGES
 		return ;
 	}
+	word.clear();
 	server.clearAll();
 	exit(1);
 }

@@ -138,14 +138,18 @@ void		Server::clearAll(void)
 {
 	for (userVector::iterator it = _user_tab.begin() + 1; it != _user_tab.end(); it++)
 	{
-		deleteUserQuittingChannel(*it);
+		// deleteUserQuittingChannel(*it);
 		close(findMatchingSocket((*it)->getNick()).fd);
+		delete (*it);
+		_user_tab.erase(it);
 	}
 	if (!_user_tab.empty())
 	{
-		deleteUserQuittingChannel(*_user_tab.begin());
+		// deleteUserQuittingChannel(*_user_tab.begin());
 		close(findMatchingSocket((*_user_tab.begin())->getNick()).fd);
-	}	
+	}
+	for (pollfdVector::iterator it = _socket_tab.begin() + 1; it != _socket_tab.end(); it++)
+		_socket_tab.erase(it);
 	_socket_tab.clear();
 	_user_tab.clear();
 	_channel_tab.clear();
