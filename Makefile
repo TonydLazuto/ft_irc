@@ -1,7 +1,7 @@
 NAME		=	ircserv
 
 CXX			=	c++
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -g3 -MMD
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -g3
 
 ifeq ($(D), 3)
 	CXXFLAGS += -D DEBUG=2
@@ -42,23 +42,17 @@ SRC			=	srcs/main.cpp \
 				srcs/Commands/topic.cpp \
 				srcs/Commands/list.cpp \
 				srcs/Channel.cpp
+				
 
-DEP			=	$(SRC:.cpp=.d)
-
-OBJ			=	$(DEP:.d=.o)
+OBJ			=	$(SRC:%.cpp=%.o)
 
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-			$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
-
-
-%.o: 		%.cpp
-			$(CXX) $(CXXFLAGS) -c $< -o $@
+			$(CXX) $(CXXFLAGS) -MMD $(OBJ) -o $(NAME)
 
 clean:
 			rm -rf $(OBJ)
-			rm -rf $(DEP)
 
 fclean:		clean
 			rm -rf $(NAME)
@@ -67,7 +61,5 @@ re:			fclean all
 
 run:
 			make all && ./$(NAME)
-
--include $(DEP)
 
 .PHONY:		all clean fclean re
